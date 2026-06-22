@@ -12,7 +12,7 @@ export function Nebula({ emotion, onClick }: NebulaProps) {
   return (
     <motion.button
       onClick={onClick}
-      className="relative group cursor-pointer"
+      className="relative group w-full cursor-pointer"
       initial={{ opacity: 0, scale: 0 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{
@@ -25,22 +25,22 @@ export function Nebula({ emotion, onClick }: NebulaProps) {
     >
       <div className="relative flex flex-col items-center">
         <div
-          className="nebula-float relative w-36 md:w-44 h-20 rounded-[2rem] flex items-center justify-center"
+          className="nebula-float relative h-[72px] w-full rounded-[1.6rem] flex items-center justify-center md:h-20"
           style={{ "--delay": `${Math.random() * 4}s` } as React.CSSProperties}
         >
           <div
-            className="absolute inset-0 rounded-[2rem] blur-xl opacity-40 pulse-glow transition-opacity duration-500 group-hover:opacity-70"
+            className="absolute inset-0 rounded-[1.6rem] blur-xl opacity-40 pulse-glow transition-opacity duration-500 group-hover:opacity-70"
             style={{
               backgroundColor: emotion.color,
               "--delay": `${Math.random() * 3}s`,
             } as React.CSSProperties}
           />
           <div
-            className="absolute inset-1 rounded-[2rem] blur-md opacity-30 transition-opacity duration-500 group-hover:opacity-50"
+            className="absolute inset-1 rounded-[1.6rem] blur-md opacity-30 transition-opacity duration-500 group-hover:opacity-50"
             style={{ backgroundColor: emotion.color }}
           />
           <div
-            className="relative w-36 md:w-44 h-20 rounded-[2rem] flex items-center justify-center px-5 text-sm md:text-base text-center leading-snug border border-white/10 backdrop-blur-sm"
+            className="relative flex h-[72px] w-full items-center justify-center rounded-[1.6rem] border border-white/10 px-5 text-center text-sm leading-snug backdrop-blur-sm md:h-20 md:text-base"
             style={{
               backgroundColor: `${emotion.color}15`,
               color: emotion.color,

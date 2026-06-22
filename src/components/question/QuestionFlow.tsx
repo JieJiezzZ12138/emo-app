@@ -93,38 +93,38 @@ export function QuestionFlow({ questions, emotionName }: QuestionFlowProps) {
   }
 
   return (
-    <div className="relative min-h-screen flex flex-col">
+    <div className="relative flex min-h-screen flex-col overflow-hidden">
       <motion.div
-        className="flex-shrink-0 pt-20 pb-4 text-center"
+        className="flex-shrink-0 pt-24 pb-3 text-center sm:pt-20 sm:pb-4"
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
       >
         <p className="text-sm text-white/30 tracking-wider">
-          {emotionName} · 第 {currentIndex + 1} / {shuffledQuestions.length} 条
+          <span className="block px-16 sm:px-0">第 {currentIndex + 1} / {shuffledQuestions.length} 条</span>
         </p>
       </motion.div>
 
-      <div className="flex-1 flex items-center justify-center px-6">
+      <div className="flex-1 flex items-center justify-center px-4 sm:px-6">
         <motion.div
           key={currentQuestion.id}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.3 }}
-          className="w-full max-w-md aspect-[3/4] rounded-3xl bg-white/[0.03] border border-white/[0.08] backdrop-blur-sm flex flex-col items-center justify-center p-8 md:p-12 relative overflow-hidden cursor-pointer"
+          className="relative flex h-[54vh] min-h-[330px] w-full max-w-md cursor-pointer flex-col items-center justify-center overflow-hidden rounded-3xl border border-white/[0.08] bg-white/[0.03] p-6 backdrop-blur-sm sm:aspect-[3/4] sm:h-auto sm:p-8 md:p-12"
           onClick={handleViewAnswer}
         >
           <div className="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent pointer-events-none" />
 
-          <div className="relative z-10 text-center space-y-8">
+          <div className="relative z-10 text-center space-y-6 sm:space-y-8">
             <div className="w-1 h-1 rounded-full bg-white/20 mx-auto" />
 
             <p className="text-xs text-white/25 tracking-wider">
               这一刻你可能在想
             </p>
 
-            <h2 className="text-2xl md:text-3xl font-light leading-relaxed text-white/90 tracking-wide px-4">
+            <h2 className="px-2 text-xl font-light leading-relaxed tracking-wide text-white/90 sm:px-4 sm:text-2xl md:text-3xl">
               {currentQuestion.title}
             </h2>
 
@@ -143,7 +143,7 @@ export function QuestionFlow({ questions, emotionName }: QuestionFlowProps) {
       </div>
 
       <motion.div
-        className="flex-shrink-0 pb-8 flex items-center justify-center gap-4 px-6"
+        className="flex-shrink-0 pb-7 pt-4 flex items-center justify-center gap-3 px-4 sm:gap-4 sm:px-6 sm:pb-8"
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5 }}
@@ -151,13 +151,13 @@ export function QuestionFlow({ questions, emotionName }: QuestionFlowProps) {
         <button
           onClick={handleSkip}
           disabled={false}
-          className="px-6 py-2.5 rounded-full border border-white/10 text-sm text-white/40 hover:text-white/60 hover:border-white/20 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+          className="rounded-full border border-white/10 px-5 py-2.5 text-sm text-white/40 transition-colors hover:border-white/20 hover:text-white/60 disabled:cursor-not-allowed disabled:opacity-30 sm:px-6"
         >
           刷下一条
         </button>
         <button
           onClick={handleViewAnswer}
-          className="px-8 py-2.5 rounded-full bg-white/10 text-sm text-white/70 hover:bg-white/15 transition-colors"
+          className="rounded-full bg-white/10 px-6 py-2.5 text-sm text-white/70 transition-colors hover:bg-white/15 sm:px-8"
         >
           看看谁懂
         </button>

@@ -41,7 +41,7 @@ export default function EmotionPage() {
       />
 
       <motion.div
-        className="absolute top-20 left-6 md:left-12 z-20"
+        className="absolute top-16 left-4 z-20 sm:top-20 sm:left-6 md:left-12"
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.3 }}
@@ -55,7 +55,7 @@ export default function EmotionPage() {
       </motion.div>
 
       <motion.div
-        className="absolute top-20 right-6 md:right-12 z-20 text-right"
+        className="absolute top-16 right-4 z-20 hidden max-w-[44vw] text-right sm:block sm:top-20 sm:right-6 md:right-12"
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.3 }}

@@ -25,7 +25,7 @@ export function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="rounded-full border border-white/10 px-3 py-1.5 text-xs text-white/45 transition-colors hover:border-white/20 hover:text-white/70"
+      className="rounded-full border border-white/10 px-2.5 py-1.5 text-[11px] text-white/45 transition-colors hover:border-white/20 hover:text-white/70 md:px-3 md:text-xs"
     >
       {theme === "dark" ? "白色" : "黑色"}
     </button>

@@ -96,7 +96,7 @@ export default function AnswerPage() {
       )}
 
       <motion.div
-        className="absolute top-20 left-6 md:left-12 z-20"
+        className="absolute top-6 left-4 z-20 sm:top-20 sm:left-6 md:left-12"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2.5 }}
@@ -110,7 +110,7 @@ export default function AnswerPage() {
       </motion.div>
 
       <motion.div
-        className="absolute top-20 right-6 md:right-12 z-20"
+        className="absolute top-6 right-4 z-20 sm:top-20 sm:right-6 md:right-12"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2.5 }}

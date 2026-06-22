@@ -51,7 +51,7 @@ export function AnswerRitual({
   }
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <div className="relative flex min-h-screen items-center justify-center overflow-y-auto px-4 py-20 sm:overflow-hidden sm:px-0 sm:py-0">
       <AnimatePresence>
         {(phase === "gathering" || phase === "shooting") && (
           <div className="absolute inset-0">
@@ -92,7 +92,7 @@ export function AnswerRitual({
       <AnimatePresence>
         {(phase === "revealing" || phase === "complete") && (
           <motion.div
-            className="relative z-10 max-w-lg mx-auto px-8 text-center space-y-8"
+            className="relative z-10 mx-auto max-w-lg space-y-6 px-2 text-center sm:space-y-8 sm:px-8"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
@@ -115,7 +115,7 @@ export function AnswerRitual({
               />
 
               <motion.blockquote
-                className="text-xl md:text-2xl font-light leading-relaxed text-white/90 tracking-wide"
+                className="text-lg font-light leading-relaxed tracking-wide text-white/90 sm:text-xl md:text-2xl"
                 variants={{
                   hidden: { opacity: 0, y: 20 },
                   visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
@@ -152,13 +152,13 @@ export function AnswerRitual({
               </motion.div>
 
               <motion.div
-                className="pt-6 space-y-4"
+                className="space-y-4 pt-3 sm:pt-6"
                 variants={{
                   hidden: { opacity: 0 },
                   visible: { opacity: 1, transition: { delay: 0.4 } },
                 }}
               >
-                <div className="p-5 rounded-2xl bg-white/[0.02] border border-white/[0.05]">
+                <div className="rounded-2xl border border-white/[0.05] bg-white/[0.02] p-4 sm:p-5">
                   <p className="text-sm text-white/40 leading-relaxed">
                     {answer.explanation}
                   </p>
@@ -167,7 +167,7 @@ export function AnswerRitual({
 
               {phase === "complete" && (
                 <motion.div
-                  className="pt-4 flex flex-col items-center gap-4"
+                  className="flex flex-col items-center gap-4 pt-2 sm:pt-4"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.3 }}
