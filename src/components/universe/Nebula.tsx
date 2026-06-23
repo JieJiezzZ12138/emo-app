@@ -8,6 +8,14 @@ interface NebulaProps {
   onClick: () => void
 }
 
+function stableDelay(value: string, range: number, offset = 0) {
+  let hash = 0
+  for (let index = 0; index < value.length; index++) {
+    hash = (hash * 31 + value.charCodeAt(index)) % 997
+  }
+  return (hash / 997) * range + offset
+}
+
 export function Nebula({ emotion, onClick }: NebulaProps) {
   return (
     <motion.button
@@ -17,7 +25,7 @@ export function Nebula({ emotion, onClick }: NebulaProps) {
       animate={{ opacity: 1, scale: 1 }}
       transition={{
         duration: 1.2,
-        delay: Math.random() * 0.5 + 0.3,
+        delay: stableDelay(`${emotion.id}-enter`, 0.5, 0.3),
         ease: "easeOut",
       }}
       whileHover={{ scale: 1.15 }}
@@ -26,13 +34,13 @@ export function Nebula({ emotion, onClick }: NebulaProps) {
       <div className="relative flex flex-col items-center">
         <div
           className="nebula-float relative h-[72px] w-full rounded-[1.6rem] flex items-center justify-center md:h-20"
-          style={{ "--delay": `${Math.random() * 4}s` } as React.CSSProperties}
+          style={{ "--delay": `${stableDelay(`${emotion.id}-float`, 4)}s` } as React.CSSProperties}
         >
           <div
             className="absolute inset-0 rounded-[1.6rem] blur-xl opacity-40 pulse-glow transition-opacity duration-500 group-hover:opacity-70"
             style={{
               backgroundColor: emotion.color,
-              "--delay": `${Math.random() * 3}s`,
+              "--delay": `${stableDelay(`${emotion.id}-glow`, 3)}s`,
             } as React.CSSProperties}
           />
           <div

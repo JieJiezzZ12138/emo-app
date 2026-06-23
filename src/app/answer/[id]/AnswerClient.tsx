@@ -1,11 +1,18 @@
 "use client"
 
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import { motion } from "framer-motion"
 import { StarField } from "@/components/universe/StarField"
 import { AnswerRitual } from "@/components/answer/AnswerRitual"
-import { getQuestionById, getRandomAnswer, getEmotionById, getAnswerById } from "@/data"
+import type { Answer } from "@/types"
+import {
+  getQuestionById,
+  getRandomAnswer,
+  getEmotionById,
+  getAnswerById,
+  getAnswersByQuestion,
+} from "@/data"
 import { useEmoStore } from "@/store"
 
 export function AnswerClient({ questionId }: { questionId: string }) {
@@ -17,13 +24,23 @@ export function AnswerClient({ questionId }: { questionId: string }) {
   const removeFavoriteAnswer = useEmoStore((s) => s.removeFavoriteAnswer)
   const favoriteAnswers = useEmoStore((s) => s.favoriteAnswers)
   const selectedAnswerId = searchParams.get("answer")
-  const answer = useMemo(() => {
+  const initialAnswer = useMemo(() => {
     const selectedAnswer = selectedAnswerId ? getAnswerById(selectedAnswerId) : undefined
     if (selectedAnswer?.questionId === questionId) return selectedAnswer
-    return getRandomAnswer(questionId)
+    return getAnswersByQuestion(questionId)[0]
   }, [questionId, selectedAnswerId])
+  const [answer, setAnswer] = useState<Answer | undefined>(initialAnswer)
   const [showFavorite, setShowFavorite] = useState(false)
   const [isSharing, setIsSharing] = useState(false)
+
+  useEffect(() => {
+    const selectedAnswer = selectedAnswerId ? getAnswerById(selectedAnswerId) : undefined
+    if (selectedAnswer?.questionId === questionId) {
+      setAnswer(selectedAnswer)
+      return
+    }
+    setAnswer(getRandomAnswer(questionId))
+  }, [questionId, selectedAnswerId])
 
   if (!question || !answer) {
     return (

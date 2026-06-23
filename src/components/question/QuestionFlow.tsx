@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { motion } from "framer-motion"
 import type { Question } from "@/types"
@@ -45,11 +45,14 @@ export function QuestionFlow({ questions, emotionName }: QuestionFlowProps) {
   const router = useRouter()
   const viewedQuestions = useEmoStore((s) => s.viewedQuestions)
   const questionViewCounts = useEmoStore((s) => s.questionViewCounts || {})
-  const [shuffledQuestions] = useState(() =>
-    buildQuestionQueue(questions, viewedQuestions, questionViewCounts)
-  )
+  const [shuffledQuestions, setShuffledQuestions] = useState<Question[]>(questions)
   const [currentIndex, setCurrentIndex] = useState(0)
   const addViewedQuestion = useEmoStore((s) => s.addViewedQuestion)
+
+  useEffect(() => {
+    setShuffledQuestions(buildQuestionQueue(questions, viewedQuestions, questionViewCounts))
+    setCurrentIndex(0)
+  }, [questions, questionViewCounts, viewedQuestions])
 
   const currentQuestion = shuffledQuestions[currentIndex]
 
